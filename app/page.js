@@ -1,16 +1,79 @@
+"use client";
+
 import Navbar from "./Components/Navbar";
 import Work from "./Components/Work";
 
+import { useEffect, useState, useRef } from "react";
+
+import "./styles/scatter.css";
+
 export default function Home() {
+    const [positions, setPositions] = useState(
+        Array.from({ length: 16 }, (_, index) => ({
+            id: index,
+            top: Math.random() * 100,
+            left: Math.random() * 100,
+            xSpeed: 0.2,
+            ySpeed: 0.2,
+        }))
+    );
+
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        const updatePositions = () => {
+            setPositions((prevPositions) =>
+                prevPositions.map((image) => {
+                    // Update positions based on speed
+                    let newTop = image.top + image.ySpeed;
+                    let newLeft = image.left + image.xSpeed;
+
+                    // Check for collisions with container edges
+                    if (newTop < 0 || newTop > 100) image.ySpeed *= -1;
+                    if (newLeft < 0 || newLeft > 100) image.xSpeed *= -1;
+
+                    // Update position
+                    return {
+                        ...image,
+                        top: Math.max(0, Math.min(100, newTop)),
+                        left: Math.max(0, Math.min(100, newLeft)),
+                        xSpeed: image.xSpeed,
+                        ySpeed: image.ySpeed,
+                    };
+                })
+            );
+        };
+
+        const interval = setInterval(updatePositions, 20); // Update every 20 ms
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <main className="flex flex-col min-h-screen items-center justify-centerscroll-y">
+        <main className="flex flex-col min-h-screen items-center justify-center scroll-y">
             <Navbar />
             <div className="h-16 my-4"></div>
             <section
                 id="about"
-                className="flex h-screen w-screen items-center justify-center"
+                ref={containerRef}
+                className="relative flex h-screen w-screen items-center justify-center overflow-hidden"
             >
-                <div class="flex flex-col text-black rounded text-center animate-halo h-1/2 w-5/6 items-center justify-center">
+                <div className="absolute inset-0 z-0 overflow-hidden">
+                    {positions.map((position, index) => (
+                        <img
+                            key={index}
+                            src={`/badges/${position.id % 5}.svg`} // Use your images here
+                            className="absolute transition-transform duration-100 ease-in-out"
+                            alt={`Background Image ${index}`}
+                            style={{
+                                top: `${position.top}%`,
+                                left: `${position.left}%`,
+                                transform: "translate(-50%, -50%)",
+                            }}
+                        />
+                    ))}
+                </div>
+                <div className="flex flex-col text-black rounded bg-white text-center animate-halo h-1/2 w-5/6 items-center justify-center z-10">
                     <p className="text-5xl">Gambhir Dhruv</p>
                     <br />
                     <p className="text-xl">

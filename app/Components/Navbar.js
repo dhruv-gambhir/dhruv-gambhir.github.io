@@ -1,10 +1,10 @@
 "use client";
 
-import "../css/custom.css";
+import "../styles/custom.css";
 
 export default function Navbar() {
     return (
-        <main className="flex flex-row w-full h-16 fixed top-0 bg-mypurple justify-center items-center">
+        <main className="flex flex-row w-full h-16 fixed top-0 bg-mypurple justify-center items-center z-10">
             <nav className="px-4 mx-4 nav">
                 <button
                     onClick={() =>
