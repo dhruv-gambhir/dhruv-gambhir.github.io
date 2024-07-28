@@ -1,0 +1,7 @@
+.nav .button {
+    transition: transform 0.3s ease;
+}
+
+.nav .button:hover {
+    transform: scale(1.2);
+}
