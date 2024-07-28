@@ -1,12 +1,11 @@
 #about img {
     position: absolute;
-    object-fit: contain; /* Ensure the image is displayed in its original aspect ratio */
-    transition: transform 0.1s ease-in-out; /* Smooth transition for movement */
-    z-index: -1; /* Ensure images are behind other content */
+    object-fit: contain;
+    transition: transform 0.1s ease-in-out;
+    z-index: -1;
 }
 
-/* Ensure that content is on top */
 #about .relative {
     position: relative;
-    z-index: 10; /* Ensures text content is above the images */
+    z-index: 10;
 }

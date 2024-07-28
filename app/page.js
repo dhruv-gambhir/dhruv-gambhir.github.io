@@ -24,15 +24,12 @@ export default function Home() {
         const updatePositions = () => {
             setPositions((prevPositions) =>
                 prevPositions.map((image) => {
-                    // Update positions based on speed
                     let newTop = image.top + image.ySpeed;
                     let newLeft = image.left + image.xSpeed;
 
-                    // Check for collisions with container edges
                     if (newTop < 0 || newTop > 100) image.ySpeed *= -1;
                     if (newLeft < 0 || newLeft > 100) image.xSpeed *= -1;
 
-                    // Update position
                     return {
                         ...image,
                         top: Math.max(0, Math.min(100, newTop)),
@@ -44,7 +41,7 @@ export default function Home() {
             );
         };
 
-        const interval = setInterval(updatePositions, 20); // Update every 20 ms
+        const interval = setInterval(updatePositions, 20);
 
         return () => clearInterval(interval);
     }, []);
@@ -52,7 +49,7 @@ export default function Home() {
     return (
         <main className="flex flex-col min-h-screen items-center justify-center scroll-y">
             <Navbar />
-            <div className="h-16 my-4"></div>
+            <div className="h-16"></div>
             <section
                 id="about"
                 ref={containerRef}
@@ -62,7 +59,7 @@ export default function Home() {
                     {positions.map((position, index) => (
                         <img
                             key={index}
-                            src={`/badges/${position.id % 5}.svg`} // Use your images here
+                            src={`/badges/${position.id}.svg`}
                             className="absolute transition-transform duration-100 ease-in-out"
                             alt={`Background Image ${index}`}
                             style={{
