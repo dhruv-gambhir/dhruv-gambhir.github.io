@@ -13,8 +13,8 @@ export default function Home() {
             id: index,
             top: Math.random() * 100,
             left: Math.random() * 100,
-            xSpeed: 0.2,
-            ySpeed: 0.2,
+            xSpeed: Math.random() * 0.5 * 0.5,
+            ySpeed: Math.random() * 0.5 * 0.5,
         }))
     );
 
@@ -81,7 +81,7 @@ export default function Home() {
                 </div>
                 <h3></h3>
             </section>
-            <div class="h-16 w-full bg-gradient-to-b from-white to-mylightblue" />
+            <div className="h-16 w-full bg-gradient-to-b from-white to-mylightblue" />
             <section
                 id="work"
                 className="flex flex-col h-screen bg-mylightblue w-screen py-8 items-center"
@@ -118,11 +118,12 @@ export default function Home() {
                     PROJECTS
                 </h1>
             </section>
-            <div class="h-16 w-full bg-gradient-to-b from-mydarkblue to-mypink" />
+            <div class="h-16 w-full bg-gradient-to-b from-mydarkblue to-mypurple" />
             <section
                 id="contact"
-                className="flex flex-col h-screen bg-mypink w-screen py-8 items-center"
+                className="flex flex-col h-screen bg-mypurple w-screen py-8 items-center"
             >
+                <div className="h-16 my-4"></div>
                 <h1 className="flex border-2 border-white text-5xl h-16 w-2/6 rounded text-black items-center justify-center">
                     CONTACT
                 </h1>

@@ -4,7 +4,7 @@ import "../styles/custom.css";
 
 export default function Navbar() {
     return (
-        <main className="flex flex-row w-full h-16 fixed top-0 bg-mypurple justify-center items-center z-20">
+        <main className="flex flex-row w-full h-16 fixed top-0 bg-mypink justify-center items-center z-20">
             <nav className="px-4 mx-4 nav">
                 <button
                     onClick={() =>
